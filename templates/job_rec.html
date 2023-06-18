@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style_job_rec.css') }}">
+    <!--img src = "{{url_for('static', filename='/home/ishita/Workspace/MSC project/Resume1/static/logo/logo-2.png')}}"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style_job_rec.css">
+    <title>Job Recommendation</title>
+</head>
+<body onload="animate_progress_bars()">
+
+<main id="swup" class="transition-fade">
+    <div class="row">
+        <div class="navbar-fixed">
+            <nav class="light-blue darken-2">
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo right">
+                    <img src = "{{url_for('static', filename='logo/logo-2.png')}}" alt="--PIM--" class="logo_center">
+                  </a>
+
+                  <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <!--NAVBAR BUTTONS-->
+                    <li> <!--TEMPLATE BUTTON-->
+                        <a href="{{ url_for('start') }}" class="btn-medium waves-effect waves-light blue lighten-1 btn">
+                        <i class="material-icons" title="templates">arrow_back</i> 
+                        resume builder
+                    </a> </li>
+                    
+                  </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+  <div class="row">
+      <div class="col s5" > <!--sidebar size-->
+        <div class="main-container" id="graph-show">
+            <div class="sub-body" id="graph-show-sub-bod">
+              <img src="{{url_for('static', filename='styles/demo.png')}}" class="graph-img">
+            </div>
+
+          
+        </div>
+      </div>
+
+      <div class="col s7">
+        <div class="main-container" id="job_rec">
+          <div class="sub-body">
+            <h3 style="margin-top:0; font-size:40px;color:rgb(23, 60, 115)">Top 3 Recommended Jobs</h3>
+          </div>
+          <div class="sub-body">
+            <div class="percent-matches">
+              
+              <div class="container">
+                
+                <div class="box" id="box1">
+                  <div class="chart1" data-percent={{score[0]}} data-scale-color="#ffb400">{{score[0]}}%</div>
+                  <a href="{{ url_for('test', name=data[0]) }}" class="job-title" style="font-size: 18px;">&ensp;{{data[0]}}</a>
+                </div>
+                <div class="box" id="box2">
+                  <div class="chart2" data-percent={{score[1]}} data-scale-color="#ffb400">{{score[1]}}%</div>
+                  <a href="{{ url_for('test', name=data[1]) }}"class="job-title" style="font-size: 16px;">&ensp;{{data[1]}}</a>
+                </div>
+                <div class="box" id="box3">
+                  <div class="chart3" data-percent={{score[2]}} data-scale-color="#ffb400">{{score[2]}}%</div>
+                  <a href="{{ url_for('test', name=data[2]) }}" class="job-title" style="font-size: 16px;">&ensp;{{data[2]}}	</a>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          
+        </div>
+            
+      </div>
+  </div>
+    
+
+  </main>
+  
+  <script src="app.js"></script>
+  <script src="node_modules/easy-pie-chart/dist/easypiechart.js"></script>
+  <script>
+    function animate_progress_bars(){
+      var element1 = document.querySelector('.chart1');
+      new EasyPieChart(element1, {
+        size: 160,
+        barColor: "#ee6c4d",
+        scaleLength: 0,
+        lineWidth: 30,
+        trackColor: "rgba(152, 208, 232, 0.688)",
+        lineCap: "circle",
+        animate: 2000,
+      });
+
+      var element1 = document.querySelector('.chart2');
+      new EasyPieChart(element1, {
+        size: 140,
+        barColor: "#ee6c4d",
+        scaleLength: 0,
+        lineWidth: 30,
+        trackColor: "rgba(152, 208, 232, 0.688)",
+        lineCap: "circle",
+        animate: 2000,
+      });
+
+      var element1 = document.querySelector('.chart3');
+      new EasyPieChart(element1, {
+        size: 130,
+        barColor: "#ee6c4d",
+        scaleLength: 0,
+        lineWidth: 30,
+        trackColor: "rgba(152, 208, 232, 0.688)",
+        lineCap: "circle",
+        animate: 2000,
+      });
+    }
+  </script> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src = "{{url_for('static', filename='node_modules/easy-pie-chart/dist/easypiechart.js')}}"></script>
+  <!--script src="https://unpkg.com/swup@3"></script>
+  <script>
+      const swup=new Swup()
+      document.addEventListener('swup:contentReplaced', function () {
+        animate_progress_bars();
+      });
+  </script-->
+
+</body>

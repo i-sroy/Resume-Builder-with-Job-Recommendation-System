@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_job_rec.css') }}">
+    <title>Job Recommendation</title>
+</head>
+<body class="light-blue darken-2">
+<main id="swup" class="transition-fade">
+    <div class="row">
+        <div class="navbar-fixed">
+            <nav class="light-blue lighten-3">
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo right">
+                    <img src = "{{url_for('static', filename='logo/logo-2.png')}}" alt="--PIM--" class="logo_center">
+                  </a>
+
+                  <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <!--NAVBAR BUTTONS-->
+                    <li> <!--TEMPLATE BUTTON-->
+                        <a href="{{ url_for('get_freq') }}" class="btn-medium waves-effect waves-light blue lighten-1 btn">
+                        <i class="material-icons" title="templates">arrow_back</i> 
+                        job recommend
+                    </a> </li>
+                    
+                  </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="main-container">
+        <h3>JOB LISTINGS</h3>
+        <div class="sub-body">
+          <table> 
+            <tr>
+              <th scope="col">Company Name</th>
+              <th scope="col">Position Name</th>
+              <th scope="col">Job Application link</th>
+            </tr>
+              {% for element in data %}
+            <tr>
+              <td class="col_a">{{element['company name']}}</td>
+              <td class="col_b">{{element['pos name']}}</td>
+              <td class="col_c"><a href="{{element['job application link']}}">{{element['job application link']}}</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+
+  </main>
+  
+  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--script src="https://unpkg.com/swup@3"></script>
+  <script>
+      const swup=new Swup()
+  </script-->
+</body>
